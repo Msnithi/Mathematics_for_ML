@@ -1,0 +1,45 @@
+'''Vector Operations: Addition, Scalar Multiplication, Dot Product, L2 Norm, Cosine Similarity'''
+
+vector1 = [1, 2, 3]
+vector2 = [4, 5, 6]
+scalar = 3
+
+# Vector Addition
+def add_vectors(a, b):
+    result = []
+    for i in range(len(a)):
+        result.append(a[i] + b[i])
+    return result
+print("Vector Addition:", add_vectors(vector1, vector2))
+
+# Scalar Multiplication
+def scalar_multiply(scalar, vector):
+    result = []
+    for elem in vector:
+        result.append(scalar * elem)
+    return result
+print("Scalar Multiplication with first vector:", scalar_multiply(scalar, vector1))
+print("Scalar Multiplication with second vector:", scalar_multiply(scalar, vector2))
+
+# Dot Product
+def dot_product(a, b):
+    result = 0
+    for i in range(len(a)):
+        result += a[i] * b[i]
+    return result
+print("Dot Product of the two vectors:", dot_product(vector1, vector2))
+
+# L2 Norm
+import math
+def l2_norm(v):
+    total = 0
+    for x in v:
+        total += x * x
+    return math.sqrt(total)
+print("L2 Norm of first vector:", l2_norm(vector1))
+print("L2 Norm of second vector:", l2_norm(vector2))
+
+# Cosine Similarity
+def cosine_similarity(a, b):
+    return dot_product(a, b) / (l2_norm(a) * l2_norm(b))
+print("Cosine Similarity between the two vectors:", cosine_similarity(vector1, vector2))

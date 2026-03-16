@@ -1,0 +1,45 @@
+"""Generating random vectors and plotting them in 2D and 3D space to visualize their relationships 
+and computing dot products and angles between them. And reason why the dot product lead to such a result."""
+
+import random
+import math
+
+# Generating random vectors
+def generate_random_vector(dim):
+    return [random.uniform(-10, 10) for _ in range(dim)]
+
+vector1 = generate_random_vector(3)
+vector2 = generate_random_vector(3)
+print("Random Vector 1:", vector1)
+print("Random Vector 2:", vector2)
+
+# Dot Product
+def dot_product(a, b):
+    result = 0
+    for i in range(len(a)):
+        result += a[i] * b[i]
+    return result
+dot = dot_product(vector1, vector2)
+print("Dot Product of the two vectors:", dot)
+
+# Angle between vectors
+def angle_between_vectors(a, b):
+    dot = dot_product(a, b)
+    norm_a = math.sqrt(dot_product(a, a))
+    norm_b = math.sqrt(dot_product(b, b))
+    if norm_a == 0 or norm_b == 0:
+        raise ValueError("Cannot compute angle with zero vector.")
+    cosine_angle = dot / (norm_a * norm_b)
+    # Clamp cosine_angle to the range [-1, 1] to avoid numerical issues
+    cosine_angle = max(min(cosine_angle, 1), -1)
+    angle = math.acos(cosine_angle)  # in radians
+    return math.degrees(angle)  # convert to degrees
+angle = angle_between_vectors(vector1, vector2)
+print("Angle between the two vectors (in degrees):", angle)
+
+if dot_product(vector1, vector2) > 0:
+    print("The vectors are pointing in a similar direction (acute angle).")
+elif dot_product(vector1, vector2) < 0:
+    print("The vectors are pointing in opposite directions (obtuse angle).")
+else:
+    print("The vectors are orthogonal (90-degree angle).")

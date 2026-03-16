@@ -1,0 +1,79 @@
+'''Initialize various vector representations to understand their structures.'''
+vector=[1,2,3]
+dataset=[
+    [5,0],
+    [1,4],
+    [3,2]
+    ]
+matrix=[
+    [1,2],
+    [3,4],
+    [5,6] ,
+    ]
+
+print("Vector:", vector)
+print("Dataset (List of Vectors, Each Row = Sample):", dataset)
+print("Matrix (List of Lists):", matrix)
+
+# Accessing elements
+print("First element of vector:", vector[0])
+print("First vector in dataset:", dataset[0])
+print("Element at row 1, column 0 of matrix:", matrix[1][0])
+
+# Modifying elements
+vector[0] = 10
+dataset[1][1] = 20
+matrix[2][1] = 30
+print("Modified Vector:", vector)
+print("Modified Dataset:", dataset)
+print("Modified Matrix:", matrix)
+
+# Adding new elements
+vector.append(4)
+dataset.append([7,8])
+matrix.append([7,8])
+print("Extended Vector:", vector)
+print("Extended Dataset:", dataset)
+print("Extended Matrix:", matrix)
+
+# Lengths
+print("Length of vector:", len(vector))
+print("Number of vectors in dataset:", len(dataset))
+print("Number of rows in matrix:", len(matrix))
+print("Number of columns in matrix:", len(matrix[0]) if matrix else 0)
+
+# Iterating through elements
+print("Iterating through vector:")
+for elem in vector:
+    print(elem)
+print("Iterating through dataset:")
+for vec in dataset:
+    print(vec)
+print("Iterating through matrix:")
+for row in matrix:
+    print(row)
+
+# Summing elements
+vector_sum = sum(vector)
+dataset_sum = [sum(vec) for vec in dataset]
+matrix_sum = [sum(row) for row in matrix]
+print("Sum of vector elements:", vector_sum)
+print("Sum of each vector in dataset:", dataset_sum)
+print("Sum of each row in matrix:", matrix_sum)
+
+# Transposing matrix
+transposed_matrix = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+print("Transposed Matrix:", transposed_matrix)
+
+# Matrix multiplication (matrix * vector)
+def matrix_vector_multiply(matrix, vector):
+    if len(matrix[0]) != len(vector):
+        raise ValueError("Number of columns in the matrix must equal the number of elements in the vector.")
+    result = []
+    for row in matrix:
+        total = 0
+        for i in range(len(row)):
+            total += row[i] * vector[i]
+        result.append(total)
+    return result
+print("Matrix-Vector Multiplication Result:", matrix_vector_multiply(matrix, vector))

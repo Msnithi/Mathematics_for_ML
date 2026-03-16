@@ -1,0 +1,56 @@
+'''Projection of vectors onto another vector is a fundamental operation in linear algebra and is 
+widely used in various applications, including machine learning, physics, and computer graphics. 
+The projection of a vector A onto another vector B can be calculated using the formula:
+Projection of A onto B = (A . B / ||B||^2) * B'''
+
+vectorA = [1, 2, 3]
+vectorB = [4, 5, 6]
+
+# Dot Product
+def dot_product(a, b):
+    result = 0
+    for i in range(len(a)):
+        result += a[i] * b[i]
+    return result
+
+# L2 Norm
+import math
+def l2_norm(v):
+    total = 0
+    for x in v:
+        total += x * x
+    return math.sqrt(total)
+
+# Projection of A onto B
+def projection(a, b):
+    dot = dot_product(a, b) 
+    norm_b_squared = l2_norm(b) ** 2
+    if norm_b_squared == 0:
+        raise ValueError("Cannot project onto the zero vector.")
+    scalar = dot / norm_b_squared
+    result = []
+    for elem in b:
+        result.append(scalar * elem)
+    return result
+print("Projection of vector A onto vector B:", projection(vectorA, vectorB))
+
+# Example of projecting a vector onto another vector in a dataset
+dataset = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+sample_vector = [2, 3]
+print("Projections of sample vector onto each vector in the dataset:")
+for i, data_vector in enumerate(dataset):
+    print(f"Vector {i}: Projection = {projection(sample_vector, data_vector)}")
+
+# Example of projecting a vector onto another vector in a matrix
+matrix = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+print("Projections of sample vector onto each row vector in the matrix:")
+for i, row_vector in enumerate(matrix):
+    print(f"Row {i}: Projection = {projection(sample_vector, row_vector)}")

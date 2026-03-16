@@ -1,0 +1,59 @@
+'''Calculating the distance between samples is a common task in data analysis, especially in 
+clustering and classification problems. The distance can be calculated using various metrics, 
+such as Euclidean distance, Manhattan distance, or cosine similarity. Below are examples of 
+how to calculate these distances between two sample vectors.'''
+
+import math
+
+vector1 = [1, 2, 3]
+vector2 = [4, 5, 6]
+
+# Euclidean Distance
+def euclidean_distance(a, b):
+    total = 0
+    for i in range(len(a)):
+        total += (a[i] - b[i]) ** 2
+    return math.sqrt(total)
+print("Euclidean Distance between the two vectors:", euclidean_distance(vector1, vector2))
+
+# Manhattan Distance
+def manhattan_distance(a, b):
+    total = 0
+    for i in range(len(a)):
+        total += abs(a[i] - b[i])
+    return total
+print("Manhattan Distance between the two vectors:", manhattan_distance(vector1, vector2))
+
+# Cosine Similarity 
+def cosine_similarity(a, b):
+    # dot product
+    dot = 0
+    for i in range(len(a)):
+        dot += a[i] * b[i]
+    # norm of a
+    norm_a = 0
+    for x in a:
+        norm_a += x * x
+    norm_a = norm_a ** 0.5   # square root
+    # norm of b
+    norm_b = 0
+    for x in b:
+        norm_b += x * x
+    norm_b = norm_b ** 0.5
+    # cosine similarity
+    return dot / (norm_a * norm_b)
+print("Cosine Similarity between the two vectors:", cosine_similarity(vector1, vector2))
+
+# Example of using these distance functions in a dataset
+dataset = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+]
+sample_vector = [2, 3]
+
+print("Distances from sample vector to each vector in the dataset:")
+for i, data_vector in enumerate(dataset):
+    print(f"Vector {i}: Euclidean Distance = {euclidean_distance(sample_vector, data_vector)}, "
+          f"Manhattan Distance = {manhattan_distance(sample_vector, data_vector)}, "
+          f"Cosine Similarity = {cosine_similarity(sample_vector, data_vector)}")
