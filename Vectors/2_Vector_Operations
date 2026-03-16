@@ -1,4 +1,4 @@
-'''Vector Operations: Addition, Scalar Multiplication, Dot Product, L2 Norm, Cosine Similarity'''
+'''Vector Operations: Addition, Scalar Multiplication, Dot Product, L2 Norm, L1 Norm, Cosine Similarity'''
 
 vector1 = [1, 2, 3]
 vector2 = [4, 5, 6]
@@ -38,6 +38,15 @@ def l2_norm(v):
     return math.sqrt(total)
 print("L2 Norm of first vector:", l2_norm(vector1))
 print("L2 Norm of second vector:", l2_norm(vector2))
+
+# L1 Norm
+def l1_norm(v):
+    total = 0
+    for x in v:
+        total += abs(x)
+    return total
+print("L1 Norm of first vector:", l1_norm(vector1))
+print("L1 Norm of second vector:", l1_norm(vector2))
 
 # Cosine Similarity
 def cosine_similarity(a, b):
